@@ -1,0 +1,113 @@
+/*
+* MIT License
+*
+* Copyright (c) 2021 MouBieCat（MouBie_Yuki）
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in all
+* copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+* SOFTWARE. 
+*/
+
+/* 標頭 */
+#include <stdio.h>
+#include <stdlib.h>
+
+/* 代碼執行開關 */
+#define Code_1         //題目（一）
+//#define Code_2         //題目（二）
+
+#ifdef Code_1
+int main() {
+	/* 申請記憶體的大小 */
+	const static int MALLOC_SIZE = 3;
+
+	/* 申請記憶體空間(3 double) */
+	double* const dPtr = 
+		(double* const)
+		malloc(sizeof(double) * MALLOC_SIZE
+		);
+
+	/* 寫入記憶體空間 */
+	for (int i = 0; i < MALLOC_SIZE; i++) {
+		/* 判斷是否為空指標，否則調用有風險 */
+		if (dPtr + i != nullptr) {
+			/* 鍵入數值到記憶體空間 */
+			scanf_s(" %lf", dPtr + i);
+			printf("存放地址: %p 存放數值: %lf \n", dPtr, *(dPtr + i));
+		}
+		else {
+			/* 空指標例外 */
+			throw "NullPointerExcption";
+		}
+	}
+
+	/* 計算三值的 總和 與 平均值 */
+	double sum = (double)0.0;
+	for (int i = 0; i < MALLOC_SIZE; i++) {
+		sum += (double)*(dPtr + i);
+	}
+	double average = sum / MALLOC_SIZE;
+	printf("總和: %lf 平均: %lf", sum, average);
+
+	/* 釋放記憶體空間 */
+	free(dPtr);
+
+	/* wait */
+	system("pause");
+}
+#endif // Code_1
+
+#ifdef Code_2
+
+/* 陣列總大小 */
+#define ARR_LENHTH 10
+
+size_t insertElement(
+	int* arr, int item, int index, size_t length
+) {
+	/* 檢查陣列索引是否超出範圍，超出範圍拋出例外 */
+	if (length >= ARR_LENHTH) throw "ArrayIndexOutOfBoundsException";
+
+	int memoryTemp = arr[index];
+	arr[index] = item;
+
+	for (int i = index + 1; i <= length; i++) {
+		int temp = arr[i];
+		arr[i] = memoryTemp;
+		memoryTemp = temp;
+	}
+
+	return length + 1;
+}
+
+int main() {
+
+	/* 宣告，並設定初始值 */
+	int arr[ARR_LENHTH] = { 12, 56, 37, 63 };
+
+	/* 返回新長度 */
+	const size_t newLength = insertElement(arr, 0xA, 0x2, 4);
+
+	/* 打印資料 */
+	for (size_t i = 0; i < newLength; i++) {
+		printf("第 %d 個元素為 %d \n", i + 1, arr[i]);
+	}
+
+	/* wait */
+	system("pause");
+}
+#endif // Code_2
