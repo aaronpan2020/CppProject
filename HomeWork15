@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// #define HOME_WORK_15_1
+// #define HOME_WORK_15_2
+// #define HOME_WORK_15_3
+
+#define HOME_WORK_15_2
+//作業開關，將代碼註解拿掉
+
+
+//15 - 1 若在程式裡宣告整數：int a = 159; int b = 0147; int c = 0x618A; 完成下面程式設計
+//(1)將變數a的值分別以八進位與十六進位列印出來。
+//(2)將變數b的值分別以十進位與十六進位列印出來。
+//(3)將變數c的值分別以八進位與十進位列印出來。
+
+#ifdef HOME_WORK_15_1
+
+int main() {
+    int a = 159, b = 0147, c = 0x618a;
+    
+    printf("%o，%d，%o\n", a, b, c);
+
+    system("pause");
+
+}
+
+#endif // HOME_WORK_15_1
+
+//請設計一個程式，可由鍵盤輸入一個八進位的整數，於程式內將此八進位數值轉成十進位與十六進位，然後將它們列印出來。
+#ifdef HOME_WORK_15_2
+
+int main() {
+    unsigned int z = 0;
+    printf("請輸入一個八進位數字\n");
+
+    scanf_s("%i", &z);
+
+    printf("十進位：%d，十六進位：%x\n", z, z);
+
+    system("pause");
+
+}
+#endif // HOME_WORK_15_2
+
+#ifdef HOME_WORK_15_3
+
+//假設a=154，b=67，試撰寫程式，求算下列各式，程式執行的結果：
+//(1)	a& b(2) a | b(3) a ^ b
+
+int main() {
+    unsigned int a = 154 , b = 67;
+    printf("%d&%d=%d\n", a, b, a & b);
+    printf("%d|%d=%d\n", a, b, a | b);
+    printf("%d^%d=%d\n", a, b, a ^ b);
+    
+
+    system("pause");
+}
+#endif // HOME_WORK_15_3
