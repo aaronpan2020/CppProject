@@ -8,7 +8,6 @@
 #define HOME_WORK_15_2
 //作業開關，將代碼註解拿掉
 
-
 //15 - 1 若在程式裡宣告整數：int a = 159; int b = 0147; int c = 0x618A; 完成下面程式設計
 //(1)將變數a的值分別以八進位與十六進位列印出來。
 //(2)將變數b的值分別以十進位與十六進位列印出來。
@@ -19,7 +18,9 @@
 int main() {
     int a = 159, b = 0147, c = 0x618a;
     
-    printf("%o，%d，%o\n", a, b, c);
+    printf("%o，%x\n", a, a);
+    printf("%d，%x\n", b, b);
+    printf("%o，%d\n", c, c);
 
     system("pause");
 
