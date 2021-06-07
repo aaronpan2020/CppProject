@@ -1,0 +1,409 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+//#define HOME_WORK_10_1
+// #define HOME_WORK_10_1    //作業一開關，將代碼註解拿掉
+// #define HOME_WORK_10_2    //作業二開關，將代碼註解拿掉
+// #define HOME_WORK_11_1
+// #define HOME_WORK_11_2
+// #define HOME_WORK_11_3
+// #define HOME_WORK_11_4
+// #define HOME_WORK_14_1
+// #define HOME_WORK_14_2
+// #define HOME_WORK_15_1
+// #define HOME_WORK_15_2
+// #define HOME_WORK_15_3
+
+#define HOME_WORK_15_3
+//作業開關，將代碼註解拿掉
+
+/*
+* 10-1
+*       請建立C程式宣告整數變數a和b
+*       其初值分別為15和16，然後宣告2個指標ptr_a和ptr_b分別指向變數a和b
+*       在使用取值運算子取得變數值後，計算和顯示2個變數值相乘的結果。
+*
+*/
+#ifdef HOME_WORK_10_1
+int main() {
+    //Dim a and b, a = 15 b = 16
+    int a = 15, b = 16;
+
+    //Dim pointer ptr_a and ptr_b.
+    //ptr_a -> a
+    //ptr_b -> b
+    int* ptr_a = &a, * ptr_b = &b;
+
+    //Get pointer data to add two numbers.
+    const int sum = (*ptr_a) + (*ptr_b);
+
+    //Output final data.
+    printf("sum = %d\n", sum);
+
+    //Wait for the user to press any key
+    system("pause");
+}
+#endif // HOME_WORK_10_1
+
+
+/*
+* 10-2
+*       請利用指標方式
+*       將學生國文、英文、數學成績紀錄下來
+*       並且計算每位學生的平均分數
+*       及各科成績的標準差。
+*/
+#ifdef HOME_WORK_10_2
+int main() {
+    int Math = 80, English = 45, Chinese = 95; //數學、英文、國文
+
+    static const int STANDARD = 60; //標準
+
+    int* ptr_math = &Math, * ptr_english = &English, * ptr_chinese = &Chinese;
+
+    const int average =
+        (*ptr_math + *ptr_english + *ptr_chinese) / 3; //平均
+
+
+    //output final data.
+    printf("平均: %d\n", average);
+    printf("標準差(數學):%d\n", *ptr_math - STANDARD);
+    printf("標準差(英文):%d\n", *ptr_english - STANDARD);
+    printf("標準差(國文):%d\n", *ptr_chinese - STANDARD);
+
+    system("pause");
+}
+#endif // HOME_WORK_10_2
+
+
+/*
+* 10-3
+*       請試著撰寫void square(int *)函數
+*       呼叫函數可以將陣列每一個元素平方
+*       例如：元素值2，就是2*2=4；3是3*3=9。
+*/
+#ifdef HOME_WORK_10_3
+void
+square(
+    int*
+);
+
+int main() {
+    int number = 5;
+
+    printf("先前結果:%d\n", number);
+
+    square(&number);
+
+    printf("最終結果:%d\n", number);
+
+    system("pause");
+}
+
+void
+square(
+    int* ptr) {
+    *ptr = (*ptr) * (*ptr);
+}
+#endif // HOME_WORK_10_3
+
+#include <stdio.h>
+#include <stdlib.h>
+
+/* 作業程式開關 */
+
+
+#ifdef HOME_WORK_11_1
+/*
+  11-1請設計一個程式含下列的結構，給於初值後將每一個成員的值列印。
+    結構 partTag 含成員：
+    物料編號 partNum 整數，初值 1357。
+    物料名稱 partName[] 三十二個的字元陣列，初值 "電腦"。
+    物料存量 partQty 整數，初值 12。
+    物料單價 partPrice 浮點數，初值 53250.0。
+
+*/
+struct partTag
+{
+    int partNum;
+    char partName[32];
+    int partQty;
+    float partPrice;
+};
+
+int
+main() {
+    partTag tag1 = { 1357, "電腦", 12, 53250.0 };
+
+    printf("%d\n", tag1.partNum);
+    printf("%s\n", tag1.partName);
+    printf("%d\n", tag1.partQty);
+    printf("%f\n", tag1.partPrice);
+
+    system("pause");
+    return 0;
+}
+#endif //HOME_WORK_11_1
+
+#ifdef HOME_WORK_11_2
+/*
+  11-2 請設計一個程式使用11-1 題的 struct partTag 結構宣告一個變數 part
+    從鍵盤輸入每一個成員的值後將每一個成員的值列印出來。
+*/
+struct partTag
+{
+    int partNum;
+    char partName[32];
+    int partQty;
+    float partPrice;
+};
+
+int
+main() {
+    partTag tag1 = {};
+
+    scanf_s(" %d", &tag1.partNum);
+    scanf_s(" %s", tag1.partName, 32);
+    scanf_s(" %d", &tag1.partQty);
+    scanf_s(" %f", &tag1.partPrice);
+
+    printf("\n%d\n", tag1.partNum);
+    printf("%s\n", tag1.partName);
+    printf("%d\n", tag1.partQty);
+    printf("%f\n", tag1.partPrice);
+
+    system("pause");
+    return 0;
+}
+#endif //HOME_WORK_11_2
+
+#ifdef HOME_WORK_11_3
+/*
+  11-3 請設計一個程式含下列的結構，給於初值後將每一個成員的值列印。
+    結構 addrTag 含成員：
+    郵遞區號 zone 整數，初值 833。
+    縣市名稱 city[] 十二個的字元陣列，初值 "高雄市"。
+    街路名稱 street[] 十二個的字元陣列，初值 "建國一路"。
+    門牌號碼 number 整數，初值 123。
+
+    請使用11-3中的 struct addrTag 結構，宣告一個變數 addr，從鍵盤輸入每一個成員的值後將每一個成員的值列印出來。
+
+*/
+struct addrTag
+{
+    int zone;
+    char city[12];
+    char street[12];
+    int number;
+};
+
+int
+main() {
+    addrTag addr = {};
+
+    scanf_s(" %d", &addr.zone);
+    scanf_s(" %s", addr.city, 12);
+    scanf_s(" %s", addr.street, 12);
+    scanf_s(" %d", &addr.number);
+
+    printf("\n%d", addr.zone);
+    printf("%s", addr.city);
+    printf("%s", addr.street);
+    printf("%d", addr.number);
+
+    system("pause");
+    return 0;
+}
+#endif // HOME_WORK_11_3
+
+#ifdef HOME_WORK_11_4
+/*
+  11-4 請設計一個程式定義一個 seasonTag 自定的列舉型態：
+      enum seasonTag {Spring, Summer, Autumn, Winter};
+     請列印相對應的字串 "春季"、"夏季"、"秋季"、"冬季"。
+
+*/
+enum class seasonTag
+{
+    Spring = 100, Summer = 200, Autumn = 300, Winter = 400
+};
+
+//根據ID查找對應的枚舉
+namespace HongYI {
+    seasonTag forID(int number) {
+        return static_cast<seasonTag>(number);
+    }
+
+    void Poinrt(const seasonTag tag) {
+        try {
+            switch (tag)
+            {
+            case seasonTag::Spring:
+                printf("春天\n");
+                break;
+            case seasonTag::Summer:
+                printf("夏天\n");
+                break;
+            case seasonTag::Autumn:
+                printf("秋天\n");
+                break;
+            case seasonTag::Winter:
+                printf("冬天\n");
+                break;
+            default:
+                throw "枚舉查表失敗！\n";
+                break;
+            }
+        }
+        catch (const char* message) {
+            printf("%s", message);
+        }
+    }
+}
+
+int
+main() {
+    int id = 0;
+    scanf_s(" %d", &id);
+    const seasonTag tag = HongYI::forID(id);
+    HongYI::Poinrt(tag);
+    system("pause");
+    return 0;
+}
+#endif // HOME_WORK_11_4
+
+
+
+#ifdef HOME_WORK_14_1
+int main() {
+    /* 申請記憶體的大小 */
+    const static int MALLOC_SIZE = 3;
+
+    /* 申請記憶體空間(3 double) */
+    double* const dPtr =
+        (double* const)
+        malloc(sizeof(double) * MALLOC_SIZE
+        );
+
+    /* 寫入記憶體空間 */
+    for (int i = 0; i < MALLOC_SIZE; i++) {
+        /* 判斷是否為空指標，否則調用有風險 */
+        if (dPtr + i != nullptr) {
+            /* 鍵入數值到記憶體空間 */
+            scanf_s(" %lf", dPtr + i);
+            printf("存放地址: %p 存放數值: %lf \n", dPtr, *(dPtr + i));
+        }
+        else {
+            /* 空指標例外 */
+            throw "NullPointerExcption";
+        }
+    }
+
+    /* 計算三值的 總和 與 平均值 */
+    double sum = (double)0.0;
+    for (int i = 0; i < MALLOC_SIZE; i++) {
+        sum += (double)*(dPtr + i);
+    }
+    double average = sum / MALLOC_SIZE;
+    printf("總和: %lf 平均: %lf", sum, average);
+
+    /* 釋放記憶體空間 */
+    free(dPtr);
+
+    /* wait */
+    system("pause");
+}
+#endif // HOME_WORK_14_1
+
+#ifdef HOME_WORK_14_2
+
+/* 陣列總大小 */
+#define ARR_LENHTH 10
+
+size_t insertElement(
+    int* arr, int item, int index, size_t length
+) {
+    /* 檢查陣列索引是否超出範圍，超出範圍拋出例外 */
+    if (length >= ARR_LENHTH) throw "ArrayIndexOutOfBoundsException";
+
+    int memoryTemp = arr[index];
+    arr[index] = item;
+
+    for (int i = index + 1; i <= length; i++) {
+        int temp = arr[i];
+        arr[i] = memoryTemp;
+        memoryTemp = temp;
+    }
+
+    return length + 1;
+}
+
+int main() {
+
+    /* 宣告，並設定初始值 */
+    int arr[ARR_LENHTH] = { 12, 56, 37, 63 };
+
+    /* 返回新長度 */
+    const size_t newLength = insertElement(arr, 0xA, 0x2, 4);
+
+    /* 打印資料 */
+    for (size_t i = 0; i < newLength; i++) {
+        printf("第 %d 個元素為 %d \n", i + 1, arr[i]);
+    }
+
+    /* wait */
+    system("pause");
+}
+#endif // HOME_WORK_14_2
+
+//15 - 1 若在程式裡宣告整數：int a = 159; int b = 0147; int c = 0x618A; 完成下面程式設計
+//(1)將變數a的值分別以八進位與十六進位列印出來。
+//(2)將變數b的值分別以十進位與十六進位列印出來。
+//(3)將變數c的值分別以八進位與十進位列印出來。
+
+#ifdef HOME_WORK_15_1
+
+int main() {
+    int a = 159, b = 0147, c = 0x618a;
+    
+    printf("%o，%x\n", a, a);
+    printf("%d，%x\n", b, b);
+    printf("%o，%d\n", c, c);
+
+    system("pause");
+
+}
+
+#endif // HOME_WORK_15_1
+
+//請設計一個程式，可由鍵盤輸入一個八進位的整數，於程式內將此八進位數值轉成十進位與十六進位，然後將它們列印出來。
+#ifdef HOME_WORK_15_2
+
+int main() {
+    unsigned int z = 0;
+    printf("請輸入一個八進位數字\n");
+
+    scanf_s("%i", &z);
+
+    printf("十進位：%d，十六進位：%x\n", z, z);
+
+    system("pause");
+
+}
+#endif // HOME_WORK_15_2
+
+#ifdef HOME_WORK_15_3
+
+//假設a=154，b=67，試撰寫程式，求算下列各式，程式執行的結果：
+//(1)	a& b(2) a | b(3) a ^ b
+
+int main() {
+    unsigned int a = 154 , b = 67;
+    printf("%d&%d=%d\n", a, b, a & b);
+    printf("%d|%d=%d\n", a, b, a | b);
+    printf("%d^%d=%d\n", a, b, a ^ b);
+    
+
+    system("pause");
+}
+#endif // HOME_WORK_15_3
