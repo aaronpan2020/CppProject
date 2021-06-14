@@ -1,0 +1,798 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <ctime>
+#include <string>
+
+// #define Examinition_4_1
+// #define Examinition_4_2    
+// #define Examinition_4_3    
+// #define Examinition_6_1
+// #define Examinition_6_2
+// #define Examinition_6_3
+// #define Examinition_7_1
+// #define Examinition_7_2
+// #define Examinition_7_3
+// #define Examinition_8_1
+// #define Examinition_8_2
+// #define Examinition_8_3
+// #define Examinition_8_4
+// #define Examinition_9_1
+// #define Examinition_9_2
+// #define Examinition_9_3
+// #define Examinition_10_1
+// #define Examinition_10_2
+// #define Examinition_11_1
+// #define Examinition_11_2
+
+#define Examinition_7_3
+//作業開關，將代碼註解拿掉
+
+/*
+4-1請設計一個程式，可由鍵盤輸入平行四邊形的底和高，然後計算其面機。
+*/
+#ifdef Examinition_4_1
+int main() {
+    //a,b,c,sum。
+    int a = 0, b = 0, c = 0;
+    float sum = 0.0;
+    printf("求四邊形面積，請輸入'上底'：\n");
+    scanf_s("%d", &a);
+    printf("求四邊形面積，請輸入'下底'：\n");
+    scanf_s("%d", &b);
+    printf("求四邊形面積，請輸入'高'：\n");
+    scanf_s("%d", &c);
+    sum = (a + b) * c ;
+    printf("四邊形面積為：%.2f\n", sum/2);
+
+
+    system("pause");
+}
+#endif // !Examinition_4_1
+
+
+/*
+* 4-2試計算下列各式，並撰寫程式碼來驗證您計算的結果：
+(a)	12-4%6/4  (b) 7*5%12*6/4  (C) (13%6)/7*8
+
+*/
+#ifdef Examinition_4_2
+int main() {
+
+    float sum1, sum2;
+    double sum3;
+    sum1 = 12 - 4 % 6 / 4;
+    printf("12 - 4%6 / 4 =：%.2f\n", sum1);
+    sum2 = 7 * 5 % 12 * 6;
+    printf("7 * 5 % 12*6 / 4 =：%.2f\n", sum2 / 4);
+    sum3 = double(13 % 6) / 7 * 8;
+    printf("(13%6) / 7 * 8 =：%.8f\n", sum3);
+
+    system("pause");
+}
+#endif // !Examinition_4_2
+
+
+/*
+請設計一個程式，可由鍵盤輸入英哩，程式的輸出為公里，其轉換公式為 1英哩=1.6公里。
+*/
+#ifdef Examinition_4_3
+
+int main() {
+
+    float a;
+
+    printf("請輸入數字 (英哩)：\n");
+    scanf_s("%f", &a);
+    a = a * 1.6;
+    printf("公里數：%.3f\n", a);
+
+    system("pause");
+}
+
+#endif // !Examinition_4_3
+
+/*
+6-1 請用if敘述來撰寫一程式，可由鍵盤輸入一個整數，然後求此數的絕對值。
+*/
+
+#ifdef Examinition_6_1
+
+
+int main() {
+    int a, b = 0;
+    printf("請輸入一個整數：\n");
+    scanf_s("%d", &a);
+
+    if (a != 0) {
+
+        b = abs(a);
+        printf("絕對值：%d\n", b);
+    }
+    else
+
+    printf("絕對值：%d\n", b);    
+
+    system("pause");
+}
+#endif // !Examinition_6_1
+
+/*
+ 6-2 請用if- else敘述來撰寫一程式，請輸入10個學生的成績，成績在0~59分為C，60~75分為B，76~100分為A，最後將得到A、B、C的人數印出。
+*/
+
+#ifdef Examinition_6_2
+
+class Student {
+private:
+    int score = 0;
+
+public:
+    Student() = default;
+
+    Student(const int score)
+        : score(score) {  }
+
+    void setScore(const int score) {
+        this->score = score;
+    }
+
+    const int getScoreLevel() const {
+        if (this->score < 60)
+            return 1;
+
+        else if (this->score < 75)
+            return 2;
+
+        else return 3;
+    }
+
+    static void showScore(const Student student) {
+        const int level = student.getScoreLevel();
+
+        printf("分數為: %d 且 ", student.score);
+        if (level == 1)
+            printf("Level: C \n");
+
+        else if (level == 2)
+            printf("Level: B \n");
+
+        else printf("Level: A \n");
+    }
+};
+
+int main() {
+    Student* students = new Student[10];
+
+    for (int i = 0; i < 10; i++) {
+        int score = 0;
+        printf("請輸入第 %d 位同學的成績: ", i + 1);
+        scanf_s(" %d", &score);
+
+        students[i].setScore(score);
+
+        Student::showScore(students[i]);
+    }
+
+    delete[] students;
+    system("pause");
+
+}
+
+#endif // !Examinition_6_2
+
+/*
+  請用switch敘述來撰寫一程式，請由鍵盤輸入一個1~7之間的整數，代表星期一到星期日。
+  若輸入的是1~5，則印出”今天要上班”， 若輸入的是6~7，則印出”今天休息”， 若輸入的不是1~7，則印出”輸入錯誤”，
+
+*/
+
+#ifdef Examinition_6_3
+
+int main() {
+
+    int a = 0;
+    printf("請輸入1~7其中一個數字：\n");
+    scanf_s("%d", &a);
+
+    switch (a)
+    {
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+        printf("今天要上班\n");
+        break;
+    case 6:
+    case 7:
+        printf("休息日，好好休息！\n");
+        break;
+    default:
+        printf("輸入代碼錯誤，請重新輸入\n");
+        break;
+    }
+    
+    system("pause");
+
+}
+#endif // !Examinition_6_3
+
+/*
+  設計一個程式輸入整數 n，求出 1 至 n 的連乘積 (n!)，
+  請分別使用while結構、do/while結構、及for結構設計。
+*/
+
+#ifdef Examinition_7_1
+
+int main() {
+        printf("輸入一個整數：\n");
+        int n = 0;
+        scanf_s(" %d", &n);
+        int temp = 1, sum = 1;
+
+        //while
+        while (temp < n)
+            sum *= ++temp;
+        printf("while: %d! = %d \n", n, sum);
+
+        temp = 1, sum = 1;
+        //do-while
+        do
+            sum *= ++temp;
+        while (temp < n);
+        printf("do-while: %d! = %d \n", n, sum);
+
+        temp = 1, sum = 1;
+        //for
+        for (int i = 1; i <= n; i++)
+            sum *= i;
+        printf("for: %d! = %d \n", n, sum);
+
+        system("pause");
+}
+
+#endif // !Examinition_7_1
+
+/*
+設計一個程式輸入整數 n，列出 1! 至 n! 的值，
+請分別使用while結構、do/while結構、及for結構設計。
+*/
+
+#ifdef Examinition_7_2
+int main() {
+    int n = 0;
+    scanf_s(" %d", &n);
+    int temp = 1, sum = 1;
+
+    //while
+    while (temp < n) {
+        printf("%d! = %d \n", temp, sum);
+        sum *= ++temp;
+    }
+    printf("while: %d! = %d \n", n, sum);
+
+    temp = 1, sum = 1;
+    //do-while
+    do {
+        printf("%d! = %d \n", temp, sum);
+        sum *= ++temp;
+    } while (temp < n);
+    printf("do-while: %d! = %d \n", n, sum);
+
+    temp = 1, sum = 1;
+    //for
+    for (int i = 1; i <= n; i++) {
+        sum *= i;
+        printf("%d! = %d \n", i, sum);
+    }
+    printf("for: %d! = %d \n", n, sum);
+
+    system("pause");
+}
+#endif // !Examinition_7_2
+
+/*
+設計一個程式輸入整數 n，求出 1! + 2! + 3! + ... + n! 的和，
+請分別使用while結構、do/while結構、及for結構設計。
+*/
+
+#ifdef Examinition_7_3
+
+int main() {
+    int n = 0;
+    scanf_s(" %d", &n);
+    int temp = 1, sum = 1;
+
+    //while
+    while (temp++ < n) {
+        int tempSum = 1, tempN = 1;
+
+        while (tempN < temp)
+            tempSum *= ++tempN;
+
+        sum += tempSum;
+    }
+    printf("while: %d \n", sum);
+
+    temp = 1, sum = 0;
+    //do-while
+    do {
+        int tempSum = 1, tempN = 1;
+
+        do tempSum *= ++tempN;
+        while (tempN < temp);
+
+        sum += tempSum;
+    } while (temp++ < n);
+    printf("do-while: %d \n", sum - 1);
+
+    //for
+    temp = 1, sum = 0;
+    for (int i = 1; i <= n; i++) {
+        int tmepSum = 1;
+
+        for (int y = 1; y <= i; y++)
+            tmepSum *= y;
+
+        sum += tmepSum;
+    }
+    printf("for: %d \n", sum);
+
+    system("pause");
+}
+
+#endif // !Examinition_7_3
+
+/*
+請設計一個函式 sum()，傳入兩個整數參數，傳回其和。
+*/
+
+#ifdef Examinition_8_1
+
+int sumFuc(
+    int a, int b
+) {
+    return a + b;
+}
+
+int main() {
+    int a = 5, b = 150;
+
+    const int sum = sumFuc(a, b);
+
+    printf("Sum = %d \n", sum);
+
+    system("pause");
+
+}
+
+#endif // !Examinition_8_1
+
+/*
+請設計一個函式可以列印 count 個指定字元 ch。
+如 count=10、ch='#'，則列印 10 個 # 字元。
+*/
+#ifdef Examinition_8_2
+
+void myPrint(
+    const int len, const char ch
+) {
+    for (int i = 0; i < len; i++) printf("%c", ch);
+    printf(" \n");
+}
+
+int main() {
+    myPrint(10, '#');
+    system("pause");
+}
+#endif // Examinition_8_2
+
+/*
+請設計一個函式，將 10000 個 1 至 2 間的隨機數，統計出現的次數
+分別存於 count1 至 count2 變數中，然後傳回主函式中，由主函式印出。
+*/
+
+#ifdef Examinition_8_3
+
+void random(int& count1, int& count2) {
+
+    /*
+    * 由於電腦實際上並沒有辦法自己產生「真正的亂數」
+    * 只能透過複雜的數學演算法模擬出類似亂數的數值資料
+    * 而在模擬亂數時，需要設定一個亂數種子，電腦會根據這個亂數種子來計算出一連串的亂數
+    * 相同的亂數種子就會產生相同的亂數序列，所以如果要讓產生的亂數每次都不同
+    * 就要設定不同的亂數種子。
+    * (參考資料: C/C++ 使用 rand 函數產生隨機亂數教學與範例程式碼)
+    *
+    * 引入 #include <ctime> 頭文件
+    */
+    srand(time(NULL));
+
+    for (int i = 0; i < 10000; i++) {
+        int randomNumber = ::rand() % 2 + 1;
+        randomNumber == 1 ? ++count1 : ++count2;
+    }
+}
+
+int main() {
+    int count1 = 0, count2 = 0;
+
+    random(count1, count2);
+
+    printf("1=%d 2=%d \n", count1, count2);
+
+    system("pause");
+}
+#endif // !Examinition_8_3
+
+
+/*
+請設計一個遞迴函式，參數為整數 n，傳回 1+2+3+...+n 之值。
+*/
+
+#ifdef Examinition_8_4
+
+int myFuc(int n) {
+    if (n == 0) return n;
+    return n + myFuc(n - 1);
+}
+
+int main() {
+    int n = 10;
+
+    int sumN = myFuc(n);
+
+    printf("1+2+3+....+%d = %d \n", n, sumN);
+
+    system("pause");
+}
+#endif // !Examinition_8_4
+
+/*
+請設計一個程式模擬一個骰子在連續一萬次的投擲中，一至六點出現次數。
+*/
+
+#ifdef Examinition_9_1
+int main() {
+
+    int randomTemp[6] = {};
+
+    srand(time(NULL));
+
+    for (int i = 0; i < 10000; i++) {
+        const int randomNumber =
+            ::rand() % 6;
+
+        ++randomTemp[randomNumber];
+    }
+
+    for (int i = 0; i < 6; i++)
+        printf("第 %d 面骰子次數: %d \n", i + 1, randomTemp[i]);
+
+    system("pause");
+}
+#endif // !Examinition_9_1
+
+/*
+請設計一個程式已知某班有 5 個學生，每個學生兩科成績為
+國文及英文，請輸入二維陣列後，計算每科成績總和及平均。
+*/
+#ifdef Examinition_9_2
+int main() {
+
+    int student[5][2] = {};
+
+    for (int i = 0; i < 5; i++) {
+        printf("請輸入第 %d 位學生的兩科成績: ", i + 1);
+        scanf_s(" %d %d", &student[i][0], &student[i][1]);
+    }
+
+    for (int i = 0; i < 5; i++) {
+
+        const int score =
+            (student[i][0] + student[i][1]) / 2;
+
+        printf("第 %d 位學生的兩科成績平均: %d \n", i + 1, score);
+    }
+
+    system("pause");
+}
+#endif // !Examinition_9_2
+
+/*
+請設計一個程式，若 a、b、c 均為 3 列 3 行的矩陣，已知 a、b，求 c=a+b。
+*/
+#ifdef Examinition_9_3
+int main() {
+
+    const int a[3][3] = {
+        { 2, 5, 7 },
+        { 2, 5, 7 },
+        { 2, 5, 7 },
+    };
+
+    const int b[3][3] = {
+        { 2, 5, 7 },
+        { 31, 10, 24 },
+        { 2, 80, 22 },
+    };
+
+    int c[3][3] = { 0 };
+
+    //相加
+    for (int i = 0; i < 3; i++)
+        for (int j = 0; j < 3; j++)
+            c[i][j] = a[i][j] + b[i][j];
+
+    //打印
+    for (int i = 0; i < 3; i++)
+        for (int j = 0; j < 3; j++)
+            printf("[%d][%d] = %d \n", i, j, c[i][j]);
+
+    system("pause");
+}
+#endif // !Examinition_9_3
+
+/*
+請設計一個程式，設整數陣列 a 之元素值為 1、3、5、7、9，以 a[i] 及 &a[i] 
+取得第i個元素之值及位址，然後以 *(a+i) 及 (a+i)取得第i個元素之值及位址，
+驗證一下結果是否相同。
+*/
+#ifdef Examinition_10_1
+int main() {
+    int a[] = { 1, 3, 5, 7, 9 };
+
+    for (int i = 0; i < sizeof(a) / 4; i++) {
+        const int iPtr1 = a[i];
+        const int* const ptr1 = &a[i];
+        printf("%d %p \n", iPtr1, ptr1);
+
+        const int iPtr2 = *(a + i);
+        const int* const ptr2 = a + i;
+        printf("%d %p\n", iPtr2, ptr2);
+    }
+
+    system("pause");
+}
+#endif // !Examinition_10_1
+
+/*
+假設有四個字元'J'、'a'、'v'、'a'，分別存於字元變數ch、ch2
+、ch3、ch4，請設計一個字元指標變數cp，分別指到字元變數時將
+其所指到的字元輸出。
+*/
+#ifdef Examinition_10_2
+int main() {
+
+    const char ch = 'J';
+    const char ch1 = 'a';
+    const char ch2 = 'v';
+    const char ch3 = 'a';
+    const char* cp = nullptr;
+
+    cp = &ch;
+    printf("%c", *cp);
+
+    cp = &ch1;
+    printf("%c", *cp);
+
+    cp = &ch2;
+    printf("%c", *cp);
+
+    cp = &ch3;
+    printf("%c", *cp);
+
+    system("pause");
+}
+#endif // !Examinition_10_2
+
+/*
+假設班上共有 50 名學生，請定義一個學生資料結構 student，以記錄
+學生的姓名、電話、地址、生日、英文成績、數學成績、國文成績。生日
+欄位是由日期結構所構成的。
+*/
+#ifdef Examinition_11_1
+class Data {
+private:
+    unsigned int year;
+    unsigned char month;
+    unsigned char day;
+
+public:
+    Data() = default;
+
+    Data(const unsigned int year, const unsigned char month, const unsigned char day)
+        : year(year), month(month), day(day) {  }
+
+    void setYear(const unsigned int year) {
+        this->year = year;
+    }
+
+    void setMonth(const unsigned char month) {
+        this->month = month;
+    }
+
+    void setDay(const unsigned char day) {
+        this->day = day;
+    }
+
+    void printData() const {
+        printf("西元 %d 年 %d 月 %d 日 ", this->year, this->month, this->day);
+    }
+
+};
+
+class Student {
+private:
+    std::string name;
+    std::string phone;
+    std::string address;
+    Data data;
+    int englishScore;
+    int mathScore;
+    int chinesScore;
+
+public:
+    Student(
+        const std::string name,
+        const std::string phone,
+        const std::string address,
+        const Data data,
+        const int englishScore,
+        const int mathScore,
+        const int chinesScore
+    ) : name(name),
+        phone(phone),
+        address(address),
+        data(data),
+        englishScore(englishScore),
+        mathScore(mathScore),
+        chinesScore(chinesScore) {
+    }
+
+    const char* getName() const {
+        return this->name.c_str();
+    }
+
+    const char* getPhone() const {
+        return this->phone.c_str();
+    }
+
+    const char* getAddress() const {
+        return this->address.c_str();
+    }
+
+    Data getData() const {
+        return this->data;
+    }
+
+    const int getEnglishScore() const {
+        return this->englishScore;
+    }
+
+    const int getMathScore() const {
+        return this->mathScore;
+    }
+
+    const int getChinesScore() const {
+        return this->chinesScore;
+    }
+
+    static void printStudnetInfo(const Student student) {
+        printf("學生名稱: %s ", student.getName());
+        printf("電話: %s ", student.getPhone());
+        printf("地址: %s ", student.getAddress());
+        printf("生日: ");
+        student.getData().printData();
+        printf("英文分數: %d ", student.getEnglishScore());
+        printf("數學分數: %d ", student.getMathScore());
+        printf("國文分數: %d ", student.getChinesScore());
+        printf(" \n");
+    }
+
+};
+
+int main() {
+    const Student students[] = {
+        Student("林阿偉", "09033672331", "桃園市-和平路-668巷3號", Data(2002, 3, 7), 50, 76, 80),
+        Student("周大發", "09033672332", "台北市-中正路-祥和路-5弄-3號-3樓", Data(1991, 5, 20), 50, 76, 80),
+        Student("黃阿倫", "09033672333", "雲林縣-虎尾鎮-虎尾路-5號-3樓", Data(2005, 4, 5), 50, 76, 80),
+        Student("花小勝", "09033672334", "高雄市-大發路-3號", Data(2001, 8, 15), 50, 76, 80)
+    };
+
+    for (int i = 0; i < 4; i++) {
+        const Student student = students[i];
+        Student::printStudnetInfo(student);
+    }
+
+    system("pause");
+}
+#endif // !Examinition_11_1
+
+/*
+請設計一個程式定義一個 monthTag 自定的列舉型態：enum monthMonth 
+{JAN, FEB, MAR, APR, MAY, JUN,JUL, AUG, SEP, OCT, NOV, DEC};
+請列印相對應的字串"正月"、"二月"、"三月"、"四月"、"五月"、"六月"、
+"七月"、"八月"、"九月"、"十月"、"十一月"、"十二月"。
+*/
+#ifdef Examinition_11_2
+enum class monthTag
+{
+    JAN = 1,
+    FEB = 2,
+    MAR = 3,
+    APR = 4,
+    MAY = 5,
+    JUN = 6,
+    JUL = 7,
+    AUG = 8,
+    SEP = 9,
+    OCT = 10,
+    NOV = 11,
+    DEC = 12
+};
+
+monthTag forMonthTagId(const int id) {
+    return static_cast<monthTag>(id);
+}
+
+void printMonth(const monthTag tag) {
+    switch (tag)
+    {
+    case monthTag::JAN:
+        printf("一月\n");
+        break;
+    case monthTag::FEB:
+        printf("二月\n");
+        break;
+    case monthTag::MAR:
+        printf("三月\n");
+        break;
+    case monthTag::APR:
+        printf("四月\n");
+        break;
+    case monthTag::MAY:
+        printf("五月\n");
+        break;
+    case monthTag::JUN:
+        printf("六月\n");
+        break;
+    case monthTag::JUL:
+        printf("七月\n");
+        break;
+    case monthTag::AUG:
+        printf("八月\n");
+        break;
+    case monthTag::SEP:
+        printf("九月\n");
+        break;
+    case monthTag::OCT:
+        printf("十月\n");
+        break;
+    case monthTag::NOV:
+        printf("十一月\n");
+        break;
+    case monthTag::DEC:
+        printf("十二月\n");
+        break;
+    }
+}
+
+int main() {
+
+    const int monthId[] = { 5, 7, 10, 12 };
+
+    const monthTag monthTagTemp = monthTag::JUL;
+
+    printMonth(monthTagTemp);
+
+    for (int i = 0; i < sizeof(monthId) / 4; i++) {
+        monthTag tag = forMonthTagId(monthId[i]);
+        printMonth(tag);
+    }
+
+    system("pause");
+}
+#endif // !Examinition_11_2
+
